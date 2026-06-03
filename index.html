@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Delwin Carter">
+<meta name="dcterms.date" content="2026-05-14">
+
+<title>PYS 120L Practice Analysis</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="LAB_5_120L_practice_S26_files/libs/clipboard/clipboard.min.js"></script>
+<script src="LAB_5_120L_practice_S26_files/libs/quarto-html/quarto.js" type="module"></script>
+<script src="LAB_5_120L_practice_S26_files/libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="LAB_5_120L_practice_S26_files/libs/quarto-html/popper.min.js"></script>
+<script src="LAB_5_120L_practice_S26_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="LAB_5_120L_practice_S26_files/libs/quarto-html/anchor.min.js"></script>
+<link href="LAB_5_120L_practice_S26_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="LAB_5_120L_practice_S26_files/libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="LAB_5_120L_practice_S26_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="LAB_5_120L_practice_S26_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="LAB_5_120L_practice_S26_files/libs/bootstrap/bootstrap-1a9011c99ff3470dca5095ea45ed0705.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="quarto-light">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-full">
+
+<main class="content column-page" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">PYS 120L Practice Analysis</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">Reproducible Data Workflow in R</p>
+</div>
+
+
+
+<div class="quarto-title-meta column-page">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Delwin Carter </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 14, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="reproducible-report-quarto-practice-data" class="level1">
+<h1><strong>Reproducible Report (Quarto + Practice Data)</strong></h1>
+<p>In Lab 5 and Lab 6, you are building a single HTML report that combines code, output, and written explanation in one place. Each part of the report does one specific job in the analysis. The goal is not to rush to results, but to create an analysis that can be run from top to bottom without manual fixes or hidden decisions.</p>
+<p>The sections we walkthrough in each lab are as follows;</p>
+<section id="lab-5" class="level4">
+<h4 class="anchored" data-anchor-id="lab-5"><strong>Lab 5:</strong></h4>
+<ul>
+<li><p><strong>Project Setup</strong></p></li>
+<li><p><strong>Load and Inspect the Data</strong></p></li>
+<li><p><strong>Data Preparation</strong></p></li>
+</ul>
+</section>
+<section id="lab-6" class="level4">
+<h4 class="anchored" data-anchor-id="lab-6">Lab 6:</h4>
+<ul>
+<li><p><strong>Finish Data Preparation</strong></p></li>
+<li><p><strong>Scale Checks: Alpha &amp; Omega</strong></p></li>
+<li><p><strong>Descriptive Statistics</strong></p></li>
+<li><p><strong>Correlation Analyses</strong></p></li>
+<li><p><strong>Independent-Samples t-tests</strong></p></li>
+<li><p><strong>Analysis of Variance (ANOVA)</strong></p></li>
+<li><p><strong>Knit your final Report</strong></p></li>
+</ul>
+<hr>
+<p><strong>Set up the report</strong></p>
+<p>At this stage, your goal is to define how code and output will appear throughout the report.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set global chunk options for the entire document</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">echo =</span> <span class="cn">TRUE</span>,      <span class="co"># display code in output</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">message =</span> <span class="cn">FALSE</span>,  <span class="co"># suppress package messages</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">warning =</span> <span class="cn">FALSE</span>   <span class="co"># suppress warnings</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Prevent automatic conversion of strings to factors</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)  <span class="co"># keep character variables as text</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction"><strong>Introduction</strong></h2>
+<p>This report demonstrates a reproducible data analysis workflow using survey data. The goal is to move from a raw dataset to an analysis-ready dataset by loading data, defining variables, cleaning responses, and constructing a scale score.</p>
+<p>Each step performs one specific function. The full document should run from top to bottom without manual fixes.</p>
+<hr>
+</section>
+<section id="setup-and-software-environment" class="level2">
+<h2 class="anchored" data-anchor-id="setup-and-software-environment"><strong>Setup and Software Environment</strong></h2>
+<p>At this stage, your goal is to load all required packages so the analysis can run without interruption.</p>
+<p><strong>Load packages</strong></p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data manipulation tools</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co"># includes dplyr, readr, etc.</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load scale construction tools</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)  <span class="co"># functions for scale analysis</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Load analysis tools for later labs</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(afex)  <span class="co"># ANOVA models</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)  <span class="co"># estimated marginal means</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<hr>
+</section>
+<section id="data-source" class="level2">
+<h2 class="anchored" data-anchor-id="data-source">Data Source</h2>
+<p>At this stage, your goal is to load the dataset and confirm that it imported correctly.</p>
+<p><strong>Load Data</strong></p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load dataset from data folder</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/120L_practice_data.csv"</span>)  <span class="co"># import CSV file into R</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the first few rows of the dataset</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)  <span class="co"># displays first rows to confirm structure and values</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 124
+  StartDate    EndDate Status IPAddress Progress Duration (in seconds…¹ Finished
+  &lt;chr&gt;        &lt;chr&gt;    &lt;dbl&gt; &lt;chr&gt;        &lt;dbl&gt;                  &lt;dbl&gt;    &lt;dbl&gt;
+1 7/12/24 14:… 7/12/2…      0 169.231.…      100                    664        1
+2 7/12/24 15:… 7/12/2…      0 75.27.24…      100                    203        1
+3 7/12/24 17:… 7/12/2…      0 98.185.2…      100                    317        1
+4 7/12/24 20:… 7/12/2…      0 184.187.…      100                    159        1
+5 7/12/24 21:… 7/12/2…      0 68.227.8…      100                    211        1
+6 7/13/24 13:… 7/13/2…      0 172.119.…      100                    215        1
+# ℹ abbreviated name: ¹​`Duration (in seconds)`
+# ℹ 117 more variables: RecordedDate &lt;chr&gt;, ResponseId &lt;chr&gt;,
+#   RecipientLastName &lt;lgl&gt;, ExternalReference &lt;lgl&gt;, LocationLatitude &lt;dbl&gt;,
+#   LocationLongitude &lt;dbl&gt;, DistributionChannel &lt;chr&gt;, UserLanguage &lt;chr&gt;,
+#   moodcond &lt;dbl&gt;, filmtype &lt;dbl&gt;, sex &lt;dbl&gt;, pet &lt;dbl&gt;, age &lt;dbl&gt;,
+#   neo1 &lt;dbl&gt;, neo2 &lt;dbl&gt;, neo3 &lt;dbl&gt;, neo4 &lt;dbl&gt;, neo5 &lt;dbl&gt;, neo6 &lt;dbl&gt;,
+#   neo7 &lt;dbl&gt;, neo8 &lt;dbl&gt;, neo9 &lt;dbl&gt;, neo10 &lt;dbl&gt;, neo11 &lt;dbl&gt;, …</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print all variable names in the dataset</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(data)  <span class="co"># lists all column names for inspection</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  [1] "StartDate"             "EndDate"               "Status"               
+  [4] "IPAddress"             "Progress"              "Duration (in seconds)"
+  [7] "Finished"              "RecordedDate"          "ResponseId"           
+ [10] "RecipientLastName"     "ExternalReference"     "LocationLatitude"     
+ [13] "LocationLongitude"     "DistributionChannel"   "UserLanguage"         
+ [16] "moodcond"              "filmtype"              "sex"                  
+ [19] "pet"                   "age"                   "neo1"                 
+ [22] "neo2"                  "neo3"                  "neo4"                 
+ [25] "neo5"                  "neo6"                  "neo7"                 
+ [28] "neo8"                  "neo9"                  "neo10"                
+ [31] "neo11"                 "neo12"                 "neo13"                
+ [34] "neo14"                 "neo15"                 "neo16"                
+ [37] "neo17"                 "neo18"                 "neo19"                
+ [40] "neo20"                 "neo21"                 "neo22"                
+ [43] "neo23"                 "neo24"                 "neo25"                
+ [46] "neo26"                 "neo27"                 "neo28"                
+ [49] "neo29"                 "neo30"                 "neo31"                
+ [52] "neo32"                 "neo33"                 "neo34"                
+ [55] "neo35"                 "neo36"                 "neo37"                
+ [58] "neo38"                 "neo39"                 "neo40"                
+ [61] "neo41"                 "neo42"                 "neo43"                
+ [64] "neo44"                 "neo45"                 "neo46"                
+ [67] "neo47"                 "neo48"                 "neo49"                
+ [70] "neo50"                 "neo51"                 "neo52"                
+ [73] "neo53"                 "neo54"                 "neo55"                
+ [76] "neo56"                 "neo57"                 "neo58"                
+ [79] "neo59"                 "neo60"                 "dep1"                 
+ [82] "dep2"                  "dep3"                  "dep4"                 
+ [85] "dep5"                  "dep6"                  "dep7"                 
+ [88] "dep8"                  "dep9"                  "dep10"                
+ [91] "dep11"                 "dep12"                 "dep13"                
+ [94] "dep14"                 "dep15"                 "dep16"                
+ [97] "dep17"                 "dep18"                 "dep19"                
+[100] "dep20"                 "anx1"                  "anx2"                 
+[103] "anx3"                  "anx4"                  "anx5"                 
+[106] "anx6"                  "anx7"                  "anx8"                 
+[109] "anx9"                  "anx10"                 "anx11"                
+[112] "anx12"                 "anx13"                 "anx14"                
+[115] "anx15"                 "anx16"                 "anx17"                
+[118] "anx18"                 "anx19"                 "anx20"                
+[121] "condition"             "teaching_style"        "FL_6_DO"              
+[124] "Videos_DO"            </code></pre>
+</div>
+</div>
+<hr>
+</section>
+<section id="variable-preparation-and-scale-construction" class="level2">
+<h2 class="anchored" data-anchor-id="variable-preparation-and-scale-construction">Variable Preparation and Scale Construction&nbsp;</h2>
+<p>The analysis should only include variables defined in the Master Key.</p>
+<p><strong>Define the Study Variable List</strong></p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a vector of variables included in the study</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>study_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"moodcond"</span>,  <span class="co"># experimental condition variable</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"filmtype"</span>,  <span class="co"># film type condition</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"sex"</span>,       <span class="co"># participant sex</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pet"</span>,       <span class="co"># pet ownership</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"age"</span>,       <span class="co"># participant age</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"neo1"</span>,<span class="st">"neo6"</span>,<span class="st">"neo11"</span>,<span class="st">"neo16"</span>,<span class="st">"neo21"</span>,<span class="st">"neo26"</span>,<span class="st">"neo31"</span>,<span class="st">"neo36"</span>,<span class="st">"neo41"</span>,<span class="st">"neo46"</span>,<span class="st">"neo51"</span>,<span class="st">"neo56"</span>,  <span class="co"># neuroticism items</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dep1"</span>,<span class="st">"dep2"</span>,<span class="st">"dep3"</span>,<span class="st">"dep4"</span>,<span class="st">"dep5"</span>,<span class="st">"dep6"</span>,<span class="st">"dep7"</span>,<span class="st">"dep8"</span>,<span class="st">"dep9"</span>,<span class="st">"dep10"</span>,<span class="st">"dep11"</span>,<span class="st">"dep12"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dep13"</span>,<span class="st">"dep14"</span>,<span class="st">"dep15"</span>,<span class="st">"dep16"</span>,<span class="st">"dep17"</span>,<span class="st">"dep18"</span>,<span class="st">"dep19"</span>,<span class="st">"dep20"</span>  <span class="co"># depression items</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the number of variables in the list</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(study_vars)  <span class="co"># confirms total number matches expected count</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 37</code></pre>
+</div>
+</div>
+<hr>
+<p><strong>Create the analysis dataset</strong></p>
+<p>Now we restrict the dataset to only the variables used in the study.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset the dataset to include only study variables</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data[, study_vars]  <span class="co"># keeps only selected variables</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Confirm the dataset structure after subsetting</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(data)  <span class="co"># verifies correct variables are retained</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "moodcond" "filmtype" "sex"      "pet"      "age"      "neo1"    
+ [7] "neo6"     "neo11"    "neo16"    "neo21"    "neo26"    "neo31"   
+[13] "neo36"    "neo41"    "neo46"    "neo51"    "neo56"    "dep1"    
+[19] "dep2"     "dep3"     "dep4"     "dep5"     "dep6"     "dep7"    
+[25] "dep8"     "dep9"     "dep10"    "dep11"    "dep12"    "dep13"   
+[31] "dep14"    "dep15"    "dep16"    "dep17"    "dep18"    "dep19"   
+[37] "dep20"   </code></pre>
+</div>
+</div>
+<hr>
+<p><strong>Prepare the dataset</strong></p>
+<p>At this stage, your goal is to ensure all variables are in the correct format.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert all variables to numeric format</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>lab_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), as.numeric))  <span class="co"># ensures numeric type for all variables</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize dataset to confirm conversion</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lab_data)  <span class="co"># checks values and missing data</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    moodcond         filmtype           sex           pet        
+ Min.   :0.0000   Min.   :0.0000   Min.   :0.0   Min.   :0.0000  
+ 1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0   1st Qu.:0.0000  
+ Median :0.0000   Median :1.0000   Median :0.5   Median :1.0000  
+ Mean   :0.4932   Mean   :0.5068   Mean   :0.5   Mean   :0.5616  
+ 3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:1.0   3rd Qu.:1.0000  
+ Max.   :1.0000   Max.   :1.0000   Max.   :1.0   Max.   :1.0000  
+                                   NA's   :2                     
+      age             neo1            neo6           neo11      
+ Min.   :18.00   Min.   :1.000   Min.   :1.000   Min.   :1.000  
+ 1st Qu.:25.00   1st Qu.:2.000   1st Qu.:1.000   1st Qu.:2.000  
+ Median :30.00   Median :3.000   Median :2.500   Median :4.000  
+ Mean   :32.66   Mean   :3.699   Mean   :2.897   Mean   :3.863  
+ 3rd Qu.:37.50   3rd Qu.:5.750   3rd Qu.:4.000   3rd Qu.:5.000  
+ Max.   :62.00   Max.   :7.000   Max.   :7.000   Max.   :7.000  
+ NA's   :3                                                      
+     neo16           neo21           neo26           neo31      
+ Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000  
+ 1st Qu.:3.000   1st Qu.:1.000   1st Qu.:1.000   1st Qu.:2.000  
+ Median :4.000   Median :2.000   Median :2.000   Median :4.000  
+ Mean   :4.219   Mean   :2.531   Mean   :2.582   Mean   :3.925  
+ 3rd Qu.:6.000   3rd Qu.:4.000   3rd Qu.:4.000   3rd Qu.:6.000  
+ Max.   :7.000   Max.   :7.000   Max.   :7.000   Max.   :7.000  
+                 NA's   :1                                      
+     neo36           neo41           neo46           neo51      
+ Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000  
+ 1st Qu.:1.250   1st Qu.:2.000   1st Qu.:2.000   1st Qu.:1.000  
+ Median :3.000   Median :3.000   Median :4.000   Median :2.000  
+ Mean   :3.055   Mean   :3.356   Mean   :4.048   Mean   :2.267  
+ 3rd Qu.:4.000   3rd Qu.:5.000   3rd Qu.:6.000   3rd Qu.:3.000  
+ Max.   :7.000   Max.   :7.000   Max.   :7.000   Max.   :6.000  
+                                                                
+     neo56            dep1            dep2            dep3      
+ Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000  
+ 1st Qu.:1.000   1st Qu.:1.000   1st Qu.:1.000   1st Qu.:1.000  
+ Median :2.000   Median :2.000   Median :1.000   Median :1.000  
+ Mean   :2.548   Mean   :2.514   Mean   :1.815   Mean   :1.932  
+ 3rd Qu.:4.000   3rd Qu.:4.000   3rd Qu.:2.000   3rd Qu.:2.000  
+ Max.   :7.000   Max.   :7.000   Max.   :7.000   Max.   :6.000  
+                                                                
+      dep4            dep5            dep6            dep7      
+ Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000  
+ 1st Qu.:5.000   1st Qu.:2.000   1st Qu.:1.000   1st Qu.:2.000  
+ Median :6.000   Median :3.000   Median :2.000   Median :3.000  
+ Mean   :5.473   Mean   :3.116   Mean   :2.062   Mean   :3.185  
+ 3rd Qu.:6.000   3rd Qu.:4.000   3rd Qu.:3.000   3rd Qu.:4.000  
+ Max.   :7.000   Max.   :7.000   Max.   :6.000   Max.   :7.000  
+                                                                
+      dep8            dep9           dep10           dep11      
+ Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000  
+ 1st Qu.:5.000   1st Qu.:1.000   1st Qu.:1.000   1st Qu.:2.000  
+ Median :5.000   Median :1.000   Median :2.000   Median :3.000  
+ Mean   :5.281   Mean   :1.603   Mean   :2.007   Mean   :3.171  
+ 3rd Qu.:6.000   3rd Qu.:2.000   3rd Qu.:2.000   3rd Qu.:4.000  
+ Max.   :7.000   Max.   :6.000   Max.   :7.000   Max.   :7.000  
+                                                                
+     dep12           dep13           dep14           dep15      
+ Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000  
+ 1st Qu.:5.000   1st Qu.:1.000   1st Qu.:1.000   1st Qu.:1.000  
+ Median :6.000   Median :1.000   Median :2.000   Median :1.000  
+ Mean   :5.315   Mean   :1.979   Mean   :1.986   Mean   :1.747  
+ 3rd Qu.:6.000   3rd Qu.:2.000   3rd Qu.:2.750   3rd Qu.:2.000  
+ Max.   :7.000   Max.   :6.000   Max.   :6.000   Max.   :6.000  
+                 NA's   :1                                      
+     dep16           dep17           dep18           dep19      
+ Min.   :1.000   Min.   :1.000   Min.   :1.000   Min.   :1.000  
+ 1st Qu.:4.250   1st Qu.:1.000   1st Qu.:1.000   1st Qu.:1.000  
+ Median :5.500   Median :1.000   Median :2.000   Median :1.000  
+ Mean   :5.219   Mean   :1.822   Mean   :2.247   Mean   :1.726  
+ 3rd Qu.:6.000   3rd Qu.:2.000   3rd Qu.:3.000   3rd Qu.:2.000  
+ Max.   :7.000   Max.   :7.000   Max.   :6.000   Max.   :6.000  
+                                                                
+     dep20      
+ Min.   :1.000  
+ 1st Qu.:1.000  
+ Median :2.000  
+ Mean   :2.281  
+ 3rd Qu.:3.000  
+ Max.   :7.000  
+                </code></pre>
+</div>
+</div>
+<hr>
+<p><strong>Label the experimental condition</strong></p>
+<p>This step makes the independent variable interpretable.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert condition variable to labeled factor</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>lab_data <span class="ot">&lt;-</span> lab_data <span class="sc">%&gt;%</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">moodcond =</span> <span class="fu">factor</span>(</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      moodcond,                     <span class="co"># original numeric variable</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),             <span class="co"># original coding</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Negative"</span>, <span class="st">"Positive"</span>)  <span class="co"># readable labels</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify condition counts</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>lab_data <span class="sc">%&gt;%</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(moodcond)  <span class="co"># counts observations in each condition</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  moodcond     n
+  &lt;fct&gt;    &lt;int&gt;
+1 Negative    74
+2 Positive    72</code></pre>
+</div>
+</div>
+<hr>
+<p><strong>Create participant ID</strong></p>
+<p>Each row should have a unique identifier.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a unique ID for each participant</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>lab_data <span class="ot">&lt;-</span> lab_data <span class="sc">%&gt;%</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">row_number</span>())  <span class="co"># assigns sequential ID values</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the ID variable</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>lab_data <span class="sc">%&gt;%</span> <span class="fu">select</span>(id) <span class="sc">%&gt;%</span> <span class="fu">head</span>()  <span class="co"># confirms ID structure</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 1
+     id
+  &lt;int&gt;
+1     1
+2     2
+3     3
+4     4
+5     5
+6     6</code></pre>
+</div>
+</div>
+<hr>
+<p><strong>Reverse-code scale items</strong></p>
+<p>Reverse-coded items must be transformed before computing scale scores.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reverse-code selected depression items</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>lab_data <span class="ot">&lt;-</span> lab_data <span class="sc">%&gt;%</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">dep4r  =</span> <span class="dv">8</span> <span class="sc">-</span> dep4,   <span class="co"># reverse-codes dep4</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">dep8r  =</span> <span class="dv">8</span> <span class="sc">-</span> dep8,   <span class="co"># reverse-codes dep8</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">dep12r =</span> <span class="dv">8</span> <span class="sc">-</span> dep12,  <span class="co"># reverse-codes dep12</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">dep16r =</span> <span class="dv">8</span> <span class="sc">-</span> dep16   <span class="co"># reverse-codes dep16</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare original and reversed values</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>lab_data <span class="sc">%&gt;%</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dep4, dep4r) <span class="sc">%&gt;%</span>  <span class="co"># selects variables for comparison</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()  <span class="co"># displays first rows</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+   dep4 dep4r
+  &lt;dbl&gt; &lt;dbl&gt;
+1     7     1
+2     7     1
+3     7     1
+4     7     1
+5     7     1
+6     7     1</code></pre>
+</div>
+</div>
+<hr>
+<p><strong>Define scale items</strong></p>
+<p>Explicit item lists ensure correct scale construction.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define depression scale items</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>dep_items <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dep1"</span>,<span class="st">"dep2"</span>,<span class="st">"dep3"</span>,<span class="st">"dep4r"</span>,<span class="st">"dep5"</span>,<span class="st">"dep6"</span>,<span class="st">"dep7"</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dep8r"</span>,<span class="st">"dep9"</span>,<span class="st">"dep10"</span>,<span class="st">"dep11"</span>,<span class="st">"dep12r"</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dep13"</span>,<span class="st">"dep14"</span>,<span class="st">"dep15"</span>,<span class="st">"dep16r"</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dep17"</span>,<span class="st">"dep18"</span>,<span class="st">"dep19"</span>,<span class="st">"dep20"</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Check that all items exist in dataset</span></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="fu">setNames</span>(dep_items <span class="sc">%in%</span> <span class="fu">names</span>(lab_data), dep_items)  <span class="co"># verifies item presence</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  dep1   dep2   dep3  dep4r   dep5   dep6   dep7  dep8r   dep9  dep10  dep11 
+  TRUE   TRUE   TRUE   TRUE   TRUE   TRUE   TRUE   TRUE   TRUE   TRUE   TRUE 
+dep12r  dep13  dep14  dep15 dep16r  dep17  dep18  dep19  dep20 
+  TRUE   TRUE   TRUE   TRUE   TRUE   TRUE   TRUE   TRUE   TRUE </code></pre>
+</div>
+</div>
+<hr>
+<p><strong>Compute scale score</strong></p>
+<p>At this stage, your goal is to construct a scale variable.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute depression scale as the row mean of items</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>lab_data <span class="ot">&lt;-</span> lab_data <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">dep_scale =</span> <span class="fu">rowMeans</span>(<span class="fu">as.matrix</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(dep_items))), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)  <span class="co"># calculates scale score</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Check proportion of missing scale scores</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">is.na</span>(lab_data<span class="sc">$</span>dep_scale))  <span class="co"># should be close to 0</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check distribution and range of the scale</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lab_data<span class="sc">$</span>dep_scale)  <span class="co"># should fall within expected range</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  1.050   1.663   2.175   2.295   2.600   4.850 </code></pre>
+</div>
+</div>
+<hr>
+<p><strong>Final check</strong></p>
+<p>At this stage, your goal is to confirm the dataset is ready for analysis.</p>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check dataset dimensions</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(lab_data)  <span class="co"># confirms number of rows and columns</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 146  43</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Check final variable names</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(lab_data)  <span class="co"># confirms variables available for next steps</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "moodcond"  "filmtype"  "sex"       "pet"       "age"       "neo1"     
+ [7] "neo6"      "neo11"     "neo16"     "neo21"     "neo26"     "neo31"    
+[13] "neo36"     "neo41"     "neo46"     "neo51"     "neo56"     "dep1"     
+[19] "dep2"      "dep3"      "dep4"      "dep5"      "dep6"      "dep7"     
+[25] "dep8"      "dep9"      "dep10"     "dep11"     "dep12"     "dep13"    
+[31] "dep14"     "dep15"     "dep16"     "dep17"     "dep18"     "dep19"    
+[37] "dep20"     "id"        "dep4r"     "dep8r"     "dep12r"    "dep16r"   
+[43] "dep_scale"</code></pre>
+</div>
+</div>
+<hr>
+<section id="create-reverse-coded-neuroticism-variable" class="level3">
+<h3 class="anchored" data-anchor-id="create-reverse-coded-neuroticism-variable">Create Reverse Coded Neuroticism Variable</h3>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">#modify the existing dataset by cretaing new variables </span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>lab_data <span class="ot">&lt;-</span> lab_data <span class="sc">%&gt;%</span> </span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#reverse-code Neuroticism items so higher values reflect more of the construct </span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">#origina scale is 1-7, so reversed value = 8 - original value </span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>      <span class="at">neo1r =</span> <span class="dv">8</span><span class="sc">-</span>neo1, <span class="co"># reverse-code item neo1</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>      <span class="at">neo16r =</span> <span class="dv">8</span><span class="sc">-</span>neo16, <span class="co">#reverse-code item neo16 </span></span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>      <span class="at">neo31r =</span> <span class="dv">8</span><span class="sc">-</span>neo31, <span class="co">#reverse-code item neo31</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">neo46r =</span> <span class="dv">8</span><span class="sc">-</span>neo46, <span class="co">#reverse code item neo46</span></span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>      )</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="define-neuroticism-item-vector" class="level3">
+<h3 class="anchored" data-anchor-id="define-neuroticism-item-vector">Define Neuroticism Item Vector</h3>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>neo_items <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="st">"neo1r"</span>,<span class="st">"neo6"</span>,<span class="st">"neo11"</span>,<span class="st">"neo16r"</span>,<span class="st">"neo21"</span>,<span class="st">"neo21"</span>,<span class="st">"neo26"</span>,<span class="st">"neo31r"</span>,<span class="st">"neo36"</span>,<span class="st">"neo41"</span>,<span class="st">"neo46r"</span>,<span class="st">"neo51"</span>,<span class="st">"neo56"</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="create-neuroticism-neo_scale-variable" class="level3">
+<h3 class="anchored" data-anchor-id="create-neuroticism-neo_scale-variable">Create Neuroticism (neo_scale) Variable</h3>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a new variable to the dataset</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>lab_data <span class="ot">&lt;-</span> lab_data <span class="sc">%&gt;%</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the Neuroticism scale score as the average of the selected items</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="at">neo_scale =</span> <span class="fu">rowMeans</span>(</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Select only the Neuroticism item columns using the neo_items vector</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a><span class="fu">as.matrix</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(neo_items))),</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the mean using available items if some are missing</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="inspect-neo_scale-missingness-and-range" class="level3">
+<h3 class="anchored" data-anchor-id="inspect-neo_scale-missingness-and-range">Inspect neo_scale (Missingness and Range)</h3>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">is.na</span>(lab_data<span class="sc">$</span>neo_scale))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0</code></pre>
+</div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lab_data<span class="sc">$</span>neo_scale)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  1.000   2.500   3.250   3.268   4.062   6.167 </code></pre>
+</div>
+</div>
+</section>
+<section id="compute-median-of-neo_scale" class="level3">
+<h3 class="anchored" data-anchor-id="compute-median-of-neo_scale">Compute Median of neo_scale</h3>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(lab_data<span class="sc">$</span>neo_scale, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3.25</code></pre>
+</div>
+</div>
+</section>
+<section id="create-neo_msplit-variable" class="level3">
+<h3 class="anchored" data-anchor-id="create-neo_msplit-variable">Create neo_msplit Variable</h3>
+<div class="cell" data-layout-align="center">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the median of the Neuroticism scale</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>neo_median <span class="ot">&lt;-</span> <span class="fu">median</span>(lab_data<span class="sc">$</span>neo_scale, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a new categorical variable based on the median split</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>lab_data <span class="ot">&lt;-</span> lab_data <span class="sc">%&gt;%</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Classify scores at or below the median as "Low" and above the median as "High"</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="at">neo_msplit =</span> <span class="fu">if_else</span>(neo_scale <span class="sc">&lt;=</span> neo_median, <span class="st">"Low"</span>, <span class="st">"High"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to a factor with "Low" as the reference level</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a><span class="fu">factor</span>(<span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"High"</span>))</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<pre><code></code></pre>
+<pre><code></code></pre>
+<p>What <strong>carries forward</strong></p>
+<p>At this stage, your goal is to identify which parts of this workflow you will reuse for your own dataset.</p>
+<p>You will use:</p>
+<ul>
+<li><p>data loading</p></li>
+<li><p>variable selection</p></li>
+<li><p>data preparation</p></li>
+<li><p>scale construction</p></li>
+</ul>
+<p>Later labs will build on this by adding statistical models and interpretation.</p>
+<!-- -->
+
+</section>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb41" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> "PYS 120L Practice Analysis"</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> "Reproducible Data Workflow in R"</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> "Delwin Carter"</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> "`r Sys.Date()`"</span></span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb41-7"><a href="#cb41-7" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb41-8"><a href="#cb41-8" aria-hidden="true" tabindex="-1"></a><span class="co">    theme: flatly</span></span>
+<span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a><span class="co">    fig-format: svg</span></span>
+<span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a><span class="co">    font:</span></span>
+<span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a><span class="co">      main: "Avenir Next LT Pro, Arial, sans-serif"</span></span>
+<span id="cb41-12"><a href="#cb41-12" aria-hidden="true" tabindex="-1"></a><span class="co">    page-layout: full</span></span>
+<span id="cb41-13"><a href="#cb41-13" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
+<span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a><span class="an">knitr:</span></span>
+<span id="cb41-18"><a href="#cb41-18" aria-hidden="true" tabindex="-1"></a><span class="co">  opts_chunk:</span></span>
+<span id="cb41-19"><a href="#cb41-19" aria-hidden="true" tabindex="-1"></a><span class="co">    echo: true</span></span>
+<span id="cb41-20"><a href="#cb41-20" aria-hidden="true" tabindex="-1"></a><span class="co">    out.width: "100%"</span></span>
+<span id="cb41-21"><a href="#cb41-21" aria-hidden="true" tabindex="-1"></a><span class="co">    fig.align: "center"</span></span>
+<span id="cb41-22"><a href="#cb41-22" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb41-23"><a href="#cb41-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-24"><a href="#cb41-24" aria-hidden="true" tabindex="-1"></a><span class="fu"># **Reproducible Report (Quarto + Practice Data)**</span></span>
+<span id="cb41-25"><a href="#cb41-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a>In Lab 5 and Lab 6, you are building a single HTML report that combines code, output, and written explanation in one place. Each part of the report does one specific job in the analysis. The goal is not to rush to results, but to create an analysis that can be run from top to bottom without manual fixes or hidden decisions.</span>
+<span id="cb41-27"><a href="#cb41-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-28"><a href="#cb41-28" aria-hidden="true" tabindex="-1"></a>The sections we walkthrough in each lab are as follows;</span>
+<span id="cb41-29"><a href="#cb41-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-30"><a href="#cb41-30" aria-hidden="true" tabindex="-1"></a><span class="fu">#### **Lab 5:**</span></span>
+<span id="cb41-31"><a href="#cb41-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-32"><a href="#cb41-32" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Project Setup**</span>
+<span id="cb41-33"><a href="#cb41-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-34"><a href="#cb41-34" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Load and Inspect the Data**</span>
+<span id="cb41-35"><a href="#cb41-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-36"><a href="#cb41-36" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Data Preparation**</span>
+<span id="cb41-37"><a href="#cb41-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-38"><a href="#cb41-38" aria-hidden="true" tabindex="-1"></a><span class="fu">#### Lab 6:</span></span>
+<span id="cb41-39"><a href="#cb41-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-40"><a href="#cb41-40" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Finish Data Preparation**</span>
+<span id="cb41-41"><a href="#cb41-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-42"><a href="#cb41-42" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Scale Checks: Alpha &amp; Omega**</span>
+<span id="cb41-43"><a href="#cb41-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-44"><a href="#cb41-44" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Descriptive Statistics**</span>
+<span id="cb41-45"><a href="#cb41-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-46"><a href="#cb41-46" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Correlation Analyses**</span>
+<span id="cb41-47"><a href="#cb41-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-48"><a href="#cb41-48" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Independent-Samples t-tests**</span>
+<span id="cb41-49"><a href="#cb41-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-50"><a href="#cb41-50" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Analysis of Variance (ANOVA)**</span>
+<span id="cb41-51"><a href="#cb41-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-52"><a href="#cb41-52" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>**Knit your final Report**</span>
+<span id="cb41-53"><a href="#cb41-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-54"><a href="#cb41-54" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb41-55"><a href="#cb41-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-56"><a href="#cb41-56" aria-hidden="true" tabindex="-1"></a>**Set up the report**</span>
+<span id="cb41-57"><a href="#cb41-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-58"><a href="#cb41-58" aria-hidden="true" tabindex="-1"></a>At this stage, your goal is to define how code and output will appear throughout the report.</span>
+<span id="cb41-59"><a href="#cb41-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-62"><a href="#cb41-62" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-63"><a href="#cb41-63" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: setup</span></span>
+<span id="cb41-64"><a href="#cb41-64" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb41-65"><a href="#cb41-65" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb41-66"><a href="#cb41-66" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb41-67"><a href="#cb41-67" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-68"><a href="#cb41-68" aria-hidden="true" tabindex="-1"></a><span class="co"># Set global chunk options for the entire document</span></span>
+<span id="cb41-69"><a href="#cb41-69" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(</span>
+<span id="cb41-70"><a href="#cb41-70" aria-hidden="true" tabindex="-1"></a>  <span class="at">echo =</span> <span class="cn">TRUE</span>,      <span class="co"># display code in output</span></span>
+<span id="cb41-71"><a href="#cb41-71" aria-hidden="true" tabindex="-1"></a>  <span class="at">message =</span> <span class="cn">FALSE</span>,  <span class="co"># suppress package messages</span></span>
+<span id="cb41-72"><a href="#cb41-72" aria-hidden="true" tabindex="-1"></a>  <span class="at">warning =</span> <span class="cn">FALSE</span>   <span class="co"># suppress warnings</span></span>
+<span id="cb41-73"><a href="#cb41-73" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb41-74"><a href="#cb41-74" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-75"><a href="#cb41-75" aria-hidden="true" tabindex="-1"></a><span class="co"># Prevent automatic conversion of strings to factors</span></span>
+<span id="cb41-76"><a href="#cb41-76" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)  <span class="co"># keep character variables as text</span></span>
+<span id="cb41-77"><a href="#cb41-77" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-78"><a href="#cb41-78" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-79"><a href="#cb41-79" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb41-80"><a href="#cb41-80" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-81"><a href="#cb41-81" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Introduction**</span></span>
+<span id="cb41-82"><a href="#cb41-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-83"><a href="#cb41-83" aria-hidden="true" tabindex="-1"></a>This report demonstrates a reproducible data analysis workflow using survey data. The goal is to move from a raw dataset to an analysis-ready dataset by loading data, defining variables, cleaning responses, and constructing a scale score.</span>
+<span id="cb41-84"><a href="#cb41-84" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-85"><a href="#cb41-85" aria-hidden="true" tabindex="-1"></a>Each step performs one specific function. The full document should run from top to bottom without manual fixes.</span>
+<span id="cb41-86"><a href="#cb41-86" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-87"><a href="#cb41-87" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb41-88"><a href="#cb41-88" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-89"><a href="#cb41-89" aria-hidden="true" tabindex="-1"></a><span class="fu">## **Setup and Software Environment**</span></span>
+<span id="cb41-90"><a href="#cb41-90" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-91"><a href="#cb41-91" aria-hidden="true" tabindex="-1"></a>At this stage, your goal is to load all required packages so the analysis can run without interruption.</span>
+<span id="cb41-92"><a href="#cb41-92" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-93"><a href="#cb41-93" aria-hidden="true" tabindex="-1"></a>**Load packages**</span>
+<span id="cb41-94"><a href="#cb41-94" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-97"><a href="#cb41-97" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-98"><a href="#cb41-98" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: packages</span></span>
+<span id="cb41-99"><a href="#cb41-99" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb41-100"><a href="#cb41-100" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb41-101"><a href="#cb41-101" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb41-102"><a href="#cb41-102" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-103"><a href="#cb41-103" aria-hidden="true" tabindex="-1"></a><span class="co"># Load data manipulation tools</span></span>
+<span id="cb41-104"><a href="#cb41-104" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)  <span class="co"># includes dplyr, readr, etc.</span></span>
+<span id="cb41-105"><a href="#cb41-105" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-106"><a href="#cb41-106" aria-hidden="true" tabindex="-1"></a><span class="co"># Load scale construction tools</span></span>
+<span id="cb41-107"><a href="#cb41-107" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)  <span class="co"># functions for scale analysis</span></span>
+<span id="cb41-108"><a href="#cb41-108" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-109"><a href="#cb41-109" aria-hidden="true" tabindex="-1"></a><span class="co"># Load analysis tools for later labs</span></span>
+<span id="cb41-110"><a href="#cb41-110" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(afex)  <span class="co"># ANOVA models</span></span>
+<span id="cb41-111"><a href="#cb41-111" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)  <span class="co"># estimated marginal means</span></span>
+<span id="cb41-112"><a href="#cb41-112" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-113"><a href="#cb41-113" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-114"><a href="#cb41-114" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb41-115"><a href="#cb41-115" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-116"><a href="#cb41-116" aria-hidden="true" tabindex="-1"></a><span class="fu">## Data Source</span></span>
+<span id="cb41-117"><a href="#cb41-117" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-118"><a href="#cb41-118" aria-hidden="true" tabindex="-1"></a>At this stage, your goal is to load the dataset and confirm that it imported correctly.</span>
+<span id="cb41-119"><a href="#cb41-119" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-120"><a href="#cb41-120" aria-hidden="true" tabindex="-1"></a>**Load Data**</span>
+<span id="cb41-121"><a href="#cb41-121" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-124"><a href="#cb41-124" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-125"><a href="#cb41-125" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: load_data</span></span>
+<span id="cb41-126"><a href="#cb41-126" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb41-127"><a href="#cb41-127" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb41-128"><a href="#cb41-128" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb41-129"><a href="#cb41-129" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-130"><a href="#cb41-130" aria-hidden="true" tabindex="-1"></a><span class="co"># Load dataset from data folder</span></span>
+<span id="cb41-131"><a href="#cb41-131" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/120L_practice_data.csv"</span>)  <span class="co"># import CSV file into R</span></span>
+<span id="cb41-132"><a href="#cb41-132" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-133"><a href="#cb41-133" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the first few rows of the dataset</span></span>
+<span id="cb41-134"><a href="#cb41-134" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data)  <span class="co"># displays first rows to confirm structure and values</span></span>
+<span id="cb41-135"><a href="#cb41-135" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-136"><a href="#cb41-136" aria-hidden="true" tabindex="-1"></a><span class="co"># Print all variable names in the dataset</span></span>
+<span id="cb41-137"><a href="#cb41-137" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(data)  <span class="co"># lists all column names for inspection</span></span>
+<span id="cb41-138"><a href="#cb41-138" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-139"><a href="#cb41-139" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-140"><a href="#cb41-140" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb41-141"><a href="#cb41-141" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-142"><a href="#cb41-142" aria-hidden="true" tabindex="-1"></a><span class="fu">## Variable Preparation and Scale Construction&nbsp;</span></span>
+<span id="cb41-143"><a href="#cb41-143" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-144"><a href="#cb41-144" aria-hidden="true" tabindex="-1"></a>The analysis should only include variables defined in the Master Key.</span>
+<span id="cb41-145"><a href="#cb41-145" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-146"><a href="#cb41-146" aria-hidden="true" tabindex="-1"></a>**Define the Study Variable List**</span>
+<span id="cb41-147"><a href="#cb41-147" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-150"><a href="#cb41-150" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-151"><a href="#cb41-151" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: define_vars</span></span>
+<span id="cb41-152"><a href="#cb41-152" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb41-153"><a href="#cb41-153" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb41-154"><a href="#cb41-154" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb41-155"><a href="#cb41-155" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-156"><a href="#cb41-156" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a vector of variables included in the study</span></span>
+<span id="cb41-157"><a href="#cb41-157" aria-hidden="true" tabindex="-1"></a>study_vars <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb41-158"><a href="#cb41-158" aria-hidden="true" tabindex="-1"></a>  <span class="st">"moodcond"</span>,  <span class="co"># experimental condition variable</span></span>
+<span id="cb41-159"><a href="#cb41-159" aria-hidden="true" tabindex="-1"></a>  <span class="st">"filmtype"</span>,  <span class="co"># film type condition</span></span>
+<span id="cb41-160"><a href="#cb41-160" aria-hidden="true" tabindex="-1"></a>  <span class="st">"sex"</span>,       <span class="co"># participant sex</span></span>
+<span id="cb41-161"><a href="#cb41-161" aria-hidden="true" tabindex="-1"></a>  <span class="st">"pet"</span>,       <span class="co"># pet ownership</span></span>
+<span id="cb41-162"><a href="#cb41-162" aria-hidden="true" tabindex="-1"></a>  <span class="st">"age"</span>,       <span class="co"># participant age</span></span>
+<span id="cb41-163"><a href="#cb41-163" aria-hidden="true" tabindex="-1"></a>  <span class="st">"neo1"</span>,<span class="st">"neo6"</span>,<span class="st">"neo11"</span>,<span class="st">"neo16"</span>,<span class="st">"neo21"</span>,<span class="st">"neo26"</span>,<span class="st">"neo31"</span>,<span class="st">"neo36"</span>,<span class="st">"neo41"</span>,<span class="st">"neo46"</span>,<span class="st">"neo51"</span>,<span class="st">"neo56"</span>,  <span class="co"># neuroticism items</span></span>
+<span id="cb41-164"><a href="#cb41-164" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dep1"</span>,<span class="st">"dep2"</span>,<span class="st">"dep3"</span>,<span class="st">"dep4"</span>,<span class="st">"dep5"</span>,<span class="st">"dep6"</span>,<span class="st">"dep7"</span>,<span class="st">"dep8"</span>,<span class="st">"dep9"</span>,<span class="st">"dep10"</span>,<span class="st">"dep11"</span>,<span class="st">"dep12"</span>,</span>
+<span id="cb41-165"><a href="#cb41-165" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dep13"</span>,<span class="st">"dep14"</span>,<span class="st">"dep15"</span>,<span class="st">"dep16"</span>,<span class="st">"dep17"</span>,<span class="st">"dep18"</span>,<span class="st">"dep19"</span>,<span class="st">"dep20"</span>  <span class="co"># depression items</span></span>
+<span id="cb41-166"><a href="#cb41-166" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb41-167"><a href="#cb41-167" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-168"><a href="#cb41-168" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the number of variables in the list</span></span>
+<span id="cb41-169"><a href="#cb41-169" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(study_vars)  <span class="co"># confirms total number matches expected count</span></span>
+<span id="cb41-170"><a href="#cb41-170" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-171"><a href="#cb41-171" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-172"><a href="#cb41-172" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb41-173"><a href="#cb41-173" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-174"><a href="#cb41-174" aria-hidden="true" tabindex="-1"></a>**Create the analysis dataset**</span>
+<span id="cb41-175"><a href="#cb41-175" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-176"><a href="#cb41-176" aria-hidden="true" tabindex="-1"></a>Now we restrict the dataset to only the variables used in the study.</span>
+<span id="cb41-177"><a href="#cb41-177" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-180"><a href="#cb41-180" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-181"><a href="#cb41-181" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: subset_data</span></span>
+<span id="cb41-182"><a href="#cb41-182" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb41-183"><a href="#cb41-183" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb41-184"><a href="#cb41-184" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb41-185"><a href="#cb41-185" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-186"><a href="#cb41-186" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset the dataset to include only study variables</span></span>
+<span id="cb41-187"><a href="#cb41-187" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> data[, study_vars]  <span class="co"># keeps only selected variables</span></span>
+<span id="cb41-188"><a href="#cb41-188" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-189"><a href="#cb41-189" aria-hidden="true" tabindex="-1"></a><span class="co"># Confirm the dataset structure after subsetting</span></span>
+<span id="cb41-190"><a href="#cb41-190" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(data)  <span class="co"># verifies correct variables are retained</span></span>
+<span id="cb41-191"><a href="#cb41-191" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-192"><a href="#cb41-192" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-193"><a href="#cb41-193" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb41-194"><a href="#cb41-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-195"><a href="#cb41-195" aria-hidden="true" tabindex="-1"></a>**Prepare the dataset**</span>
+<span id="cb41-196"><a href="#cb41-196" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-197"><a href="#cb41-197" aria-hidden="true" tabindex="-1"></a>At this stage, your goal is to ensure all variables are in the correct format.</span>
+<span id="cb41-198"><a href="#cb41-198" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-201"><a href="#cb41-201" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-202"><a href="#cb41-202" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: prepare_data</span></span>
+<span id="cb41-203"><a href="#cb41-203" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb41-204"><a href="#cb41-204" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb41-205"><a href="#cb41-205" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb41-206"><a href="#cb41-206" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-207"><a href="#cb41-207" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert all variables to numeric format</span></span>
+<span id="cb41-208"><a href="#cb41-208" aria-hidden="true" tabindex="-1"></a>lab_data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span></span>
+<span id="cb41-209"><a href="#cb41-209" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), as.numeric))  <span class="co"># ensures numeric type for all variables</span></span>
+<span id="cb41-210"><a href="#cb41-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-211"><a href="#cb41-211" aria-hidden="true" tabindex="-1"></a><span class="co"># Summarize dataset to confirm conversion</span></span>
+<span id="cb41-212"><a href="#cb41-212" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lab_data)  <span class="co"># checks values and missing data</span></span>
+<span id="cb41-213"><a href="#cb41-213" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-214"><a href="#cb41-214" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-215"><a href="#cb41-215" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb41-216"><a href="#cb41-216" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-217"><a href="#cb41-217" aria-hidden="true" tabindex="-1"></a>**Label the experimental condition**</span>
+<span id="cb41-218"><a href="#cb41-218" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-219"><a href="#cb41-219" aria-hidden="true" tabindex="-1"></a>This step makes the independent variable interpretable.</span>
+<span id="cb41-220"><a href="#cb41-220" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-223"><a href="#cb41-223" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-224"><a href="#cb41-224" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: label_condition</span></span>
+<span id="cb41-225"><a href="#cb41-225" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb41-226"><a href="#cb41-226" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb41-227"><a href="#cb41-227" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb41-228"><a href="#cb41-228" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-229"><a href="#cb41-229" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert condition variable to labeled factor</span></span>
+<span id="cb41-230"><a href="#cb41-230" aria-hidden="true" tabindex="-1"></a>lab_data <span class="ot">&lt;-</span> lab_data <span class="sc">%&gt;%</span></span>
+<span id="cb41-231"><a href="#cb41-231" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb41-232"><a href="#cb41-232" aria-hidden="true" tabindex="-1"></a>    <span class="at">moodcond =</span> <span class="fu">factor</span>(</span>
+<span id="cb41-233"><a href="#cb41-233" aria-hidden="true" tabindex="-1"></a>      moodcond,                     <span class="co"># original numeric variable</span></span>
+<span id="cb41-234"><a href="#cb41-234" aria-hidden="true" tabindex="-1"></a>      <span class="at">levels =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>),             <span class="co"># original coding</span></span>
+<span id="cb41-235"><a href="#cb41-235" aria-hidden="true" tabindex="-1"></a>      <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">"Negative"</span>, <span class="st">"Positive"</span>)  <span class="co"># readable labels</span></span>
+<span id="cb41-236"><a href="#cb41-236" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb41-237"><a href="#cb41-237" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb41-238"><a href="#cb41-238" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-239"><a href="#cb41-239" aria-hidden="true" tabindex="-1"></a><span class="co"># Verify condition counts</span></span>
+<span id="cb41-240"><a href="#cb41-240" aria-hidden="true" tabindex="-1"></a>lab_data <span class="sc">%&gt;%</span></span>
+<span id="cb41-241"><a href="#cb41-241" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(moodcond)  <span class="co"># counts observations in each condition</span></span>
+<span id="cb41-242"><a href="#cb41-242" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-243"><a href="#cb41-243" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-244"><a href="#cb41-244" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb41-245"><a href="#cb41-245" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-246"><a href="#cb41-246" aria-hidden="true" tabindex="-1"></a>**Create participant ID**</span>
+<span id="cb41-247"><a href="#cb41-247" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-248"><a href="#cb41-248" aria-hidden="true" tabindex="-1"></a>Each row should have a unique identifier.</span>
+<span id="cb41-249"><a href="#cb41-249" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-252"><a href="#cb41-252" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-253"><a href="#cb41-253" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: create_id</span></span>
+<span id="cb41-254"><a href="#cb41-254" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb41-255"><a href="#cb41-255" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb41-256"><a href="#cb41-256" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb41-257"><a href="#cb41-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-258"><a href="#cb41-258" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a unique ID for each participant</span></span>
+<span id="cb41-259"><a href="#cb41-259" aria-hidden="true" tabindex="-1"></a>lab_data <span class="ot">&lt;-</span> lab_data <span class="sc">%&gt;%</span></span>
+<span id="cb41-260"><a href="#cb41-260" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">row_number</span>())  <span class="co"># assigns sequential ID values</span></span>
+<span id="cb41-261"><a href="#cb41-261" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-262"><a href="#cb41-262" aria-hidden="true" tabindex="-1"></a><span class="co"># Preview the ID variable</span></span>
+<span id="cb41-263"><a href="#cb41-263" aria-hidden="true" tabindex="-1"></a>lab_data <span class="sc">%&gt;%</span> <span class="fu">select</span>(id) <span class="sc">%&gt;%</span> <span class="fu">head</span>()  <span class="co"># confirms ID structure</span></span>
+<span id="cb41-264"><a href="#cb41-264" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-265"><a href="#cb41-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-266"><a href="#cb41-266" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb41-267"><a href="#cb41-267" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-268"><a href="#cb41-268" aria-hidden="true" tabindex="-1"></a>**Reverse-code scale items**</span>
+<span id="cb41-269"><a href="#cb41-269" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-270"><a href="#cb41-270" aria-hidden="true" tabindex="-1"></a>Reverse-coded items must be transformed before computing scale scores.</span>
+<span id="cb41-271"><a href="#cb41-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-274"><a href="#cb41-274" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-275"><a href="#cb41-275" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: reverse_code</span></span>
+<span id="cb41-276"><a href="#cb41-276" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb41-277"><a href="#cb41-277" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb41-278"><a href="#cb41-278" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb41-279"><a href="#cb41-279" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-280"><a href="#cb41-280" aria-hidden="true" tabindex="-1"></a><span class="co"># Reverse-code selected depression items</span></span>
+<span id="cb41-281"><a href="#cb41-281" aria-hidden="true" tabindex="-1"></a>lab_data <span class="ot">&lt;-</span> lab_data <span class="sc">%&gt;%</span></span>
+<span id="cb41-282"><a href="#cb41-282" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb41-283"><a href="#cb41-283" aria-hidden="true" tabindex="-1"></a>    <span class="at">dep4r  =</span> <span class="dv">8</span> <span class="sc">-</span> dep4,   <span class="co"># reverse-codes dep4</span></span>
+<span id="cb41-284"><a href="#cb41-284" aria-hidden="true" tabindex="-1"></a>    <span class="at">dep8r  =</span> <span class="dv">8</span> <span class="sc">-</span> dep8,   <span class="co"># reverse-codes dep8</span></span>
+<span id="cb41-285"><a href="#cb41-285" aria-hidden="true" tabindex="-1"></a>    <span class="at">dep12r =</span> <span class="dv">8</span> <span class="sc">-</span> dep12,  <span class="co"># reverse-codes dep12</span></span>
+<span id="cb41-286"><a href="#cb41-286" aria-hidden="true" tabindex="-1"></a>    <span class="at">dep16r =</span> <span class="dv">8</span> <span class="sc">-</span> dep16   <span class="co"># reverse-codes dep16</span></span>
+<span id="cb41-287"><a href="#cb41-287" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb41-288"><a href="#cb41-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-289"><a href="#cb41-289" aria-hidden="true" tabindex="-1"></a><span class="co"># Compare original and reversed values</span></span>
+<span id="cb41-290"><a href="#cb41-290" aria-hidden="true" tabindex="-1"></a>lab_data <span class="sc">%&gt;%</span></span>
+<span id="cb41-291"><a href="#cb41-291" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(dep4, dep4r) <span class="sc">%&gt;%</span>  <span class="co"># selects variables for comparison</span></span>
+<span id="cb41-292"><a href="#cb41-292" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()  <span class="co"># displays first rows</span></span>
+<span id="cb41-293"><a href="#cb41-293" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-294"><a href="#cb41-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-295"><a href="#cb41-295" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb41-296"><a href="#cb41-296" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-297"><a href="#cb41-297" aria-hidden="true" tabindex="-1"></a>**Define scale items**</span>
+<span id="cb41-298"><a href="#cb41-298" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-299"><a href="#cb41-299" aria-hidden="true" tabindex="-1"></a>Explicit item lists ensure correct scale construction.</span>
+<span id="cb41-300"><a href="#cb41-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-303"><a href="#cb41-303" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-304"><a href="#cb41-304" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: define_scale</span></span>
+<span id="cb41-305"><a href="#cb41-305" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb41-306"><a href="#cb41-306" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb41-307"><a href="#cb41-307" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb41-308"><a href="#cb41-308" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-309"><a href="#cb41-309" aria-hidden="true" tabindex="-1"></a><span class="co"># Define depression scale items</span></span>
+<span id="cb41-310"><a href="#cb41-310" aria-hidden="true" tabindex="-1"></a>dep_items <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb41-311"><a href="#cb41-311" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dep1"</span>,<span class="st">"dep2"</span>,<span class="st">"dep3"</span>,<span class="st">"dep4r"</span>,<span class="st">"dep5"</span>,<span class="st">"dep6"</span>,<span class="st">"dep7"</span>,</span>
+<span id="cb41-312"><a href="#cb41-312" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dep8r"</span>,<span class="st">"dep9"</span>,<span class="st">"dep10"</span>,<span class="st">"dep11"</span>,<span class="st">"dep12r"</span>,</span>
+<span id="cb41-313"><a href="#cb41-313" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dep13"</span>,<span class="st">"dep14"</span>,<span class="st">"dep15"</span>,<span class="st">"dep16r"</span>,</span>
+<span id="cb41-314"><a href="#cb41-314" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dep17"</span>,<span class="st">"dep18"</span>,<span class="st">"dep19"</span>,<span class="st">"dep20"</span></span>
+<span id="cb41-315"><a href="#cb41-315" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb41-316"><a href="#cb41-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-317"><a href="#cb41-317" aria-hidden="true" tabindex="-1"></a><span class="co"># Check that all items exist in dataset</span></span>
+<span id="cb41-318"><a href="#cb41-318" aria-hidden="true" tabindex="-1"></a><span class="fu">setNames</span>(dep_items <span class="sc">%in%</span> <span class="fu">names</span>(lab_data), dep_items)  <span class="co"># verifies item presence</span></span>
+<span id="cb41-319"><a href="#cb41-319" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-320"><a href="#cb41-320" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-321"><a href="#cb41-321" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb41-322"><a href="#cb41-322" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-323"><a href="#cb41-323" aria-hidden="true" tabindex="-1"></a>**Compute scale score**</span>
+<span id="cb41-324"><a href="#cb41-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-325"><a href="#cb41-325" aria-hidden="true" tabindex="-1"></a>At this stage, your goal is to construct a scale variable.</span>
+<span id="cb41-326"><a href="#cb41-326" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-329"><a href="#cb41-329" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-330"><a href="#cb41-330" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: compute_scale</span></span>
+<span id="cb41-331"><a href="#cb41-331" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb41-332"><a href="#cb41-332" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb41-333"><a href="#cb41-333" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb41-334"><a href="#cb41-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-335"><a href="#cb41-335" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute depression scale as the row mean of items</span></span>
+<span id="cb41-336"><a href="#cb41-336" aria-hidden="true" tabindex="-1"></a>lab_data <span class="ot">&lt;-</span> lab_data <span class="sc">%&gt;%</span></span>
+<span id="cb41-337"><a href="#cb41-337" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb41-338"><a href="#cb41-338" aria-hidden="true" tabindex="-1"></a>    <span class="at">dep_scale =</span> <span class="fu">rowMeans</span>(<span class="fu">as.matrix</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(dep_items))), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)  <span class="co"># calculates scale score</span></span>
+<span id="cb41-339"><a href="#cb41-339" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb41-340"><a href="#cb41-340" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-341"><a href="#cb41-341" aria-hidden="true" tabindex="-1"></a><span class="co"># Check proportion of missing scale scores</span></span>
+<span id="cb41-342"><a href="#cb41-342" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">is.na</span>(lab_data<span class="sc">$</span>dep_scale))  <span class="co"># should be close to 0</span></span>
+<span id="cb41-343"><a href="#cb41-343" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-344"><a href="#cb41-344" aria-hidden="true" tabindex="-1"></a><span class="co"># Check distribution and range of the scale</span></span>
+<span id="cb41-345"><a href="#cb41-345" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lab_data<span class="sc">$</span>dep_scale)  <span class="co"># should fall within expected range</span></span>
+<span id="cb41-346"><a href="#cb41-346" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-347"><a href="#cb41-347" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-348"><a href="#cb41-348" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb41-349"><a href="#cb41-349" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-350"><a href="#cb41-350" aria-hidden="true" tabindex="-1"></a>**Final check**</span>
+<span id="cb41-351"><a href="#cb41-351" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-352"><a href="#cb41-352" aria-hidden="true" tabindex="-1"></a>At this stage, your goal is to confirm the dataset is ready for analysis.</span>
+<span id="cb41-353"><a href="#cb41-353" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-356"><a href="#cb41-356" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-357"><a href="#cb41-357" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: final_check</span></span>
+<span id="cb41-358"><a href="#cb41-358" aria-hidden="true" tabindex="-1"></a><span class="co">#| echo: true</span></span>
+<span id="cb41-359"><a href="#cb41-359" aria-hidden="true" tabindex="-1"></a><span class="co">#| message: false</span></span>
+<span id="cb41-360"><a href="#cb41-360" aria-hidden="true" tabindex="-1"></a><span class="co">#| warning: false</span></span>
+<span id="cb41-361"><a href="#cb41-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-362"><a href="#cb41-362" aria-hidden="true" tabindex="-1"></a><span class="co"># Check dataset dimensions</span></span>
+<span id="cb41-363"><a href="#cb41-363" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(lab_data)  <span class="co"># confirms number of rows and columns</span></span>
+<span id="cb41-364"><a href="#cb41-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-365"><a href="#cb41-365" aria-hidden="true" tabindex="-1"></a><span class="co"># Check final variable names</span></span>
+<span id="cb41-366"><a href="#cb41-366" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(lab_data)  <span class="co"># confirms variables available for next steps</span></span>
+<span id="cb41-367"><a href="#cb41-367" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-368"><a href="#cb41-368" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-369"><a href="#cb41-369" aria-hidden="true" tabindex="-1"></a>------------------------------------------------------------------------</span>
+<span id="cb41-370"><a href="#cb41-370" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-371"><a href="#cb41-371" aria-hidden="true" tabindex="-1"></a><span class="fu">### Create Reverse Coded Neuroticism Variable</span></span>
+<span id="cb41-372"><a href="#cb41-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-375"><a href="#cb41-375" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-376"><a href="#cb41-376" aria-hidden="true" tabindex="-1"></a><span class="co">#modify the existing dataset by cretaing new variables </span></span>
+<span id="cb41-377"><a href="#cb41-377" aria-hidden="true" tabindex="-1"></a>lab_data <span class="ot">&lt;-</span> lab_data <span class="sc">%&gt;%</span> </span>
+<span id="cb41-378"><a href="#cb41-378" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>( </span>
+<span id="cb41-379"><a href="#cb41-379" aria-hidden="true" tabindex="-1"></a>    <span class="co">#reverse-code Neuroticism items so higher values reflect more of the construct </span></span>
+<span id="cb41-380"><a href="#cb41-380" aria-hidden="true" tabindex="-1"></a>    <span class="co">#origina scale is 1-7, so reversed value = 8 - original value </span></span>
+<span id="cb41-381"><a href="#cb41-381" aria-hidden="true" tabindex="-1"></a>      <span class="at">neo1r =</span> <span class="dv">8</span><span class="sc">-</span>neo1, <span class="co"># reverse-code item neo1</span></span>
+<span id="cb41-382"><a href="#cb41-382" aria-hidden="true" tabindex="-1"></a>      <span class="at">neo16r =</span> <span class="dv">8</span><span class="sc">-</span>neo16, <span class="co">#reverse-code item neo16 </span></span>
+<span id="cb41-383"><a href="#cb41-383" aria-hidden="true" tabindex="-1"></a>      <span class="at">neo31r =</span> <span class="dv">8</span><span class="sc">-</span>neo31, <span class="co">#reverse-code item neo31</span></span>
+<span id="cb41-384"><a href="#cb41-384" aria-hidden="true" tabindex="-1"></a>      <span class="at">neo46r =</span> <span class="dv">8</span><span class="sc">-</span>neo46, <span class="co">#reverse code item neo46</span></span>
+<span id="cb41-385"><a href="#cb41-385" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb41-386"><a href="#cb41-386" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-387"><a href="#cb41-387" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-388"><a href="#cb41-388" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-389"><a href="#cb41-389" aria-hidden="true" tabindex="-1"></a><span class="fu">### Define Neuroticism Item Vector</span></span>
+<span id="cb41-390"><a href="#cb41-390" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-393"><a href="#cb41-393" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-394"><a href="#cb41-394" aria-hidden="true" tabindex="-1"></a>neo_items <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb41-395"><a href="#cb41-395" aria-hidden="true" tabindex="-1"></a>  <span class="st">"neo1r"</span>,<span class="st">"neo6"</span>,<span class="st">"neo11"</span>,<span class="st">"neo16r"</span>,<span class="st">"neo21"</span>,<span class="st">"neo21"</span>,<span class="st">"neo26"</span>,<span class="st">"neo31r"</span>,<span class="st">"neo36"</span>,<span class="st">"neo41"</span>,<span class="st">"neo46r"</span>,<span class="st">"neo51"</span>,<span class="st">"neo56"</span></span>
+<span id="cb41-396"><a href="#cb41-396" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb41-397"><a href="#cb41-397" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-398"><a href="#cb41-398" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-399"><a href="#cb41-399" aria-hidden="true" tabindex="-1"></a><span class="fu">### Create Neuroticism (neo_scale) Variable</span></span>
+<span id="cb41-400"><a href="#cb41-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-403"><a href="#cb41-403" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-404"><a href="#cb41-404" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a new variable to the dataset</span></span>
+<span id="cb41-405"><a href="#cb41-405" aria-hidden="true" tabindex="-1"></a>lab_data <span class="ot">&lt;-</span> lab_data <span class="sc">%&gt;%</span></span>
+<span id="cb41-406"><a href="#cb41-406" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
+<span id="cb41-407"><a href="#cb41-407" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the Neuroticism scale score as the average of the selected items</span></span>
+<span id="cb41-408"><a href="#cb41-408" aria-hidden="true" tabindex="-1"></a><span class="at">neo_scale =</span> <span class="fu">rowMeans</span>(</span>
+<span id="cb41-409"><a href="#cb41-409" aria-hidden="true" tabindex="-1"></a><span class="co"># Select only the Neuroticism item columns using the neo_items vector</span></span>
+<span id="cb41-410"><a href="#cb41-410" aria-hidden="true" tabindex="-1"></a><span class="fu">as.matrix</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(neo_items))),</span>
+<span id="cb41-411"><a href="#cb41-411" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the mean using available items if some are missing</span></span>
+<span id="cb41-412"><a href="#cb41-412" aria-hidden="true" tabindex="-1"></a><span class="at">na.rm =</span> <span class="cn">TRUE</span></span>
+<span id="cb41-413"><a href="#cb41-413" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb41-414"><a href="#cb41-414" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb41-415"><a href="#cb41-415" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-416"><a href="#cb41-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-417"><a href="#cb41-417" aria-hidden="true" tabindex="-1"></a><span class="fu">### Inspect neo_scale (Missingness and Range)</span></span>
+<span id="cb41-418"><a href="#cb41-418" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-421"><a href="#cb41-421" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-422"><a href="#cb41-422" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="fu">is.na</span>(lab_data<span class="sc">$</span>neo_scale))</span>
+<span id="cb41-423"><a href="#cb41-423" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-424"><a href="#cb41-424" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-427"><a href="#cb41-427" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-428"><a href="#cb41-428" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(lab_data<span class="sc">$</span>neo_scale)</span>
+<span id="cb41-429"><a href="#cb41-429" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-430"><a href="#cb41-430" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-431"><a href="#cb41-431" aria-hidden="true" tabindex="-1"></a><span class="fu">### Compute Median of neo_scale</span></span>
+<span id="cb41-432"><a href="#cb41-432" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-435"><a href="#cb41-435" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-436"><a href="#cb41-436" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(lab_data<span class="sc">$</span>neo_scale, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb41-437"><a href="#cb41-437" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-438"><a href="#cb41-438" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-439"><a href="#cb41-439" aria-hidden="true" tabindex="-1"></a><span class="fu">### Create neo_msplit Variable</span></span>
+<span id="cb41-440"><a href="#cb41-440" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-443"><a href="#cb41-443" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb41-444"><a href="#cb41-444" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute the median of the Neuroticism scale</span></span>
+<span id="cb41-445"><a href="#cb41-445" aria-hidden="true" tabindex="-1"></a>neo_median <span class="ot">&lt;-</span> <span class="fu">median</span>(lab_data<span class="sc">$</span>neo_scale, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb41-446"><a href="#cb41-446" aria-hidden="true" tabindex="-1"></a><span class="co"># Add a new categorical variable based on the median split</span></span>
+<span id="cb41-447"><a href="#cb41-447" aria-hidden="true" tabindex="-1"></a>lab_data <span class="ot">&lt;-</span> lab_data <span class="sc">%&gt;%</span></span>
+<span id="cb41-448"><a href="#cb41-448" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(</span>
+<span id="cb41-449"><a href="#cb41-449" aria-hidden="true" tabindex="-1"></a><span class="co"># Classify scores at or below the median as "Low" and above the median as "High"</span></span>
+<span id="cb41-450"><a href="#cb41-450" aria-hidden="true" tabindex="-1"></a><span class="at">neo_msplit =</span> <span class="fu">if_else</span>(neo_scale <span class="sc">&lt;=</span> neo_median, <span class="st">"Low"</span>, <span class="st">"High"</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-451"><a href="#cb41-451" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert to a factor with "Low" as the reference level</span></span>
+<span id="cb41-452"><a href="#cb41-452" aria-hidden="true" tabindex="-1"></a><span class="fu">factor</span>(<span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Low"</span>, <span class="st">"High"</span>))</span>
+<span id="cb41-453"><a href="#cb41-453" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb41-454"><a href="#cb41-454" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-455"><a href="#cb41-455" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-456"><a href="#cb41-456" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-457"><a href="#cb41-457" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb41-458"><a href="#cb41-458" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-459"><a href="#cb41-459" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-460"><a href="#cb41-460" aria-hidden="true" tabindex="-1"></a><span class="in">```         </span></span>
+<span id="cb41-461"><a href="#cb41-461" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb41-462"><a href="#cb41-462" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-463"><a href="#cb41-463" aria-hidden="true" tabindex="-1"></a>What **carries forward**</span>
+<span id="cb41-464"><a href="#cb41-464" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-465"><a href="#cb41-465" aria-hidden="true" tabindex="-1"></a>At this stage, your goal is to identify which parts of this workflow you will reuse for your own dataset.</span>
+<span id="cb41-466"><a href="#cb41-466" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-467"><a href="#cb41-467" aria-hidden="true" tabindex="-1"></a>You will use:</span>
+<span id="cb41-468"><a href="#cb41-468" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-469"><a href="#cb41-469" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>data loading</span>
+<span id="cb41-470"><a href="#cb41-470" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-471"><a href="#cb41-471" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>variable selection</span>
+<span id="cb41-472"><a href="#cb41-472" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-473"><a href="#cb41-473" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>data preparation</span>
+<span id="cb41-474"><a href="#cb41-474" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-475"><a href="#cb41-475" aria-hidden="true" tabindex="-1"></a><span class="ss">-   </span>scale construction</span>
+<span id="cb41-476"><a href="#cb41-476" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-477"><a href="#cb41-477" aria-hidden="true" tabindex="-1"></a>Later labs will build on this by adding statistical models and interpretation.</span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
