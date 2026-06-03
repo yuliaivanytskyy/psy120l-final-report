@@ -1,8 +1,12 @@
 # psy120l-final-report
-# Project Title 
-Developmental Experiences: Shaping Students’ Achievement Motivation and Self-Efficacy
-# Research Question 
-How do students’ developmental experiences impact self-efficacy and achievement motivation?
-# Research report was created in Quarto/R
-# Report file is index.html
-# Data set is not included 
+
+## Developmental Experiences: Shaping Students’ Achievement Motivation and Self-Efficacy
+
+
+This study examined how students’ developmental experiences impact self-efficacy and achievement motivation?
+
+The research report was created using Quarto within R. 
+
+The Report file is index.html
+
+The data set is not included in the repository. 
